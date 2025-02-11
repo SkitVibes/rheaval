@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Page</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            color: #5a3e9f;
+            text-align: center;
+        }
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+        .image {
+            width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .message {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #5a3e9f;
+            color: white;
+            transition: background-color 0.3s ease, font-size 0.3s ease, width 0.3s ease, height 0.3s ease;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        button:hover {
+            background-color: #7b5fcf;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay loop muted>
+        <source src="greenscreen-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="container">
+        <img id="mainImage" src="converted_video.gif" alt="Converted Video Gif" class="image">
+        <div id="mainMessage" class="message">Will you be my Valentine?</div>
+        <div class="buttons">
+            <button id="yesButton" onclick="onYesClick()">Yes</button>
+            <button id="noButton" onclick="onNoClick()">No</button>
+        </div>
+    </div>
+
+    <script>
+        let messageIndex = 0;
+        const messages = ["Wow you hate me", "Man.", "I get beat"];
+
+        function onNoClick() {
+            const image = document.getElementById('mainImage');
+            const message = document.getElementById('mainMessage');
+
+            // Change image to the sad cat gif
+            image.src = "sadcat.gif";
+            image.alt = "Sad Cat Gif";
+
+            // Change the message text
+            message.textContent = messages[messageIndex];
+            messageIndex = (messageIndex + 1) % messages.length;
+        }
+
+        function onYesClick() {
+            const image = document.getElementById('mainImage');
+            const message = document.getElementById('mainMessage');
+
+            // Change image to the gif
+            image.src = "cat.gif";
+            image.alt = "Cats Gif";
+
+            // Change the message text
+            message.textContent = "Yuppie!";
+        }
+    </script>
+</body>
+</html>
